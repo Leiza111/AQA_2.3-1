@@ -37,17 +37,11 @@ public class TestingForm {
         $("[data-test-id='phone'] input").setValue(firstMeeting.getPhone()); //+
         $("[data-test-id='agreement']").click(); //+
         $$(".button__text").find(exactText("Запланировать")).click();
+        $(".notification__content").shouldHave(exactText("Встреча успешно запланирована на " + planningDate), Duration.ofSeconds(15));
+        $(".notification__content").click();
 
- //       $(".notification__content").shouldBe(exactText("Встреча успешно запланирована на " + RedevelopedDate));
- //       $(".notification__content").shouldHave(exactText("Встреча успешно запланирована на " + RedevelopedDate), Duration.ofSeconds(20));
-        $("[data-test-id='success-notification'] .notification__content").shouldBe(Condition.visible)
-                .shouldHave(Condition.text("Встреча успешно запланирована на  " + generateDate(3)), Duration.ofSeconds(15));
-        $("button.notification__closer").click();
-     //   $("[data-test-id='notification'] .notification__title").shouldBe(visible, Duration.ofSeconds(20)).shouldHave(exactText("Встреча успешно запланирована на " + RedevelopedDate));
-//        $("[data-test-id='notification'] .notification__content").shouldBe(visible, Duration.ofSeconds(20)).shouldHave(exactText("Встреча успешно забронирована на " + planningDate));
-
-        //перепланирование даты
-        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE); //+
+//   //перепланирование даты
+   $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE); //+
         $("[data-test-id='date'] input").setValue(RedevelopedDate);
         $$(".button__text").find(exactText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__content")
@@ -57,5 +51,5 @@ public class TestingForm {
 
         $(".notification__content")
                 .shouldBe(visible).shouldHave(exactText("Встреча успешно запланирована на " + RedevelopedDate), Duration.ofSeconds(15));
-    }
+}
 }
