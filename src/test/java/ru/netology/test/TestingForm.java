@@ -16,21 +16,18 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class TestingForm {
-    public static String generateDate(int days) {
-        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-    }
-
-    String planningDate = DataGenerator.generateDate(21);
-    String RedevelopedDate = DataGenerator.generateDate(28);
-    @Test
+       @Test
     void shouldSuccessfulCardOrder() {
+        String planningDate = DataGenerator.generateDate(21);
+        String RedevelopedDate = DataGenerator.generateDate(28);
+
         open("http://localhost:9999");
 
         RegistrationByCardInfo firstMeeting = DataGenerator.Registration.generateByCard("ru");
         Configuration.holdBrowserOpen = true;
 
 
-          $("[data-test-id='city'] input").setValue(firstMeeting.getCity()); //+
+        $("[data-test-id='city'] input").setValue(firstMeeting.getCity()); //+
         $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE); //+
         $("[data-test-id='date'] input").setValue(planningDate); //+
         $("[data-test-id='name'] input").setValue(firstMeeting.getName()); //+
