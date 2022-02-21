@@ -18,7 +18,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestingForm {
        @Test
     void shouldSuccessfulCardOrder() {
-        String planningDate = DataGenerator.generateDate(21);
+
+           String planningDate = DataGenerator.generateDate(21);
         String RedevelopedDate = DataGenerator.generateDate(28);
 
         open("http://localhost:9999");
